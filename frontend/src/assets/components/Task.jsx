@@ -1,7 +1,6 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { Avatar, Image } from "antd";
 import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -28,17 +27,10 @@ font-weight: 500;
 background-color: #00000040;
 `;
 
-const Icons = styled.div`
-  display: flex;
-  justify-content: end;
-  padding: 2px;
-`;
-
 function bgcolorChange(props) {
-  console.log({ props });
   return props.isDragging
     ? "lightgreen"
-    : props.status == "wait" ? '#ff6666' : props?.status == 'dev' ? '#46b2ff' : props?.status == 'test' ? '#ffe425' : '#00fe2b'
+    : props.status === "wait" ? '#ff6666' : props?.status === 'dev' ? '#46b2ff' : props?.status === 'test' ? '#ffe425' : '#00fe2b'
 
 }
 

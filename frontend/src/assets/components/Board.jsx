@@ -63,7 +63,7 @@ export default function Board() {
         "__v": 0
       }
     )
-    axios.patch(`http://localhost:5000/api/editTask/${editTask?._id}`, {
+    axios.patch(`https://developer-progress-management.onrender.com/api/editTask/${editTask?._id}`, {
       title: editTask?.title,
       description: editTask?.description,
     }).then((res) => {
@@ -87,7 +87,7 @@ export default function Board() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/getTasks")
+    fetch("https://developer-progress-management.onrender.com/api/getTasks")
       .then((response) => response.json())
       .then((json) => {
         setTasks(json);
@@ -97,11 +97,11 @@ export default function Board() {
   const handleDragEnd = (result) => {
     const { destination, source, draggableId } = result;
 
-    if (source?.droppableId == destination?.droppableId) return;
+    if (source?.droppableId === destination?.droppableId) return;
     if (source && destination) {
       let prevTasks = JSON.parse(JSON.stringify(tasks));
       updateTasks(draggableId, source?.droppableId, destination?.droppableId)
-      axios.patch(`http://localhost:5000/api/editTask/${draggableId}`, {
+      axios.patch(`https://developer-progress-management.onrender.com/api/editTask/${draggableId}`, {
         status: destination?.droppableId
       }).then((res) => {
       }).catch(({ response }) => {
@@ -127,14 +127,14 @@ export default function Board() {
   }
 
   function findItemById(id, array) {
-    return array.find((item) => item?._id == id);
+    return array.find((item) => item?._id === id);
   }
 
   function removeItemById(id, array, returnIndex = false) {
     if (returnIndex) {
       let nonMatchingIndex = 0;
       let tempArr = array.filter((item, index) => {
-        if (item?._id != id) {
+        if (item?._id !== id) {
           return true
         } else {
           nonMatchingIndex = index;
@@ -146,12 +146,12 @@ export default function Board() {
         index: nonMatchingIndex,
       }
     } else {
-      return array.filter((item) => item?._id != id);
+      return array.filter((item) => item?._id !== id);
     }
   }
 
   const hAddTaks = () => {
-    axios.post(`http://localhost:5000/api/createTasks`, {
+    axios.post(`https://developer-progress-management.onrender.com/api/createTasks`, {
       title: editTask?.title,
       description: editTask?.description
     }).then((res) => {
@@ -169,7 +169,7 @@ export default function Board() {
   }
 
   const hDeleteTask = () => {
-    axios.delete(`http://localhost:5000/api/deleteTask/${deleteDetails?.id}`).then((res) => {
+    axios.delete(`https://developer-progress-management.onrender.com/api/deleteTask/${deleteDetails?.id}`).then((res) => {
       let tempTaskArray = tasks[deleteDetails?.mode]
       tempTaskArray = removeItemById(deleteDetails?.id, tempTaskArray);
       setTasks({
