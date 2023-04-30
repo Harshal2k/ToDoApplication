@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import Column from "./assets/components/Column";
-import KanbanBoard from "./assets/components/Kanbanboard";
-import Task from "./assets/components/Task";
+import Board from "./assets/components/Board";
 
 function App() {
   return (
     <div className="App">
-      <KanbanBoard />
+      <Board />
     </div>
   );
 }

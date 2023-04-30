@@ -17,7 +17,7 @@ const defaultEditTask = {
   status: ''
 }
 
-export default function KanbanBoard() {
+export default function Board() {
   const [editMode, setEditMode] = useState(false);
   const [deleteDetails, setDeleteDetails] = useState({ open: false, id: '', mode: '' });
 
