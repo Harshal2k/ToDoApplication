@@ -63,7 +63,7 @@ export default function Board() {
         "__v": 0
       }
     )
-    axios.patch(`https://developer-progress-management.onrender.com/api/editTask/${editTask?._id}`, {
+    axios.patch(`http://localhost:5000/api/editTask/${editTask?._id}`, {
       title: editTask?.title,
       description: editTask?.description,
     }).then((res) => {
@@ -87,7 +87,7 @@ export default function Board() {
   }
 
   useEffect(() => {
-    fetch("https://developer-progress-management.onrender.com/api/getTasks")
+    fetch("http://localhost:5000/api/getTasks")
       .then((response) => response.json())
       .then((json) => {
         setTasks(json);
@@ -101,7 +101,7 @@ export default function Board() {
     if (source && destination) {
       let prevTasks = JSON.parse(JSON.stringify(tasks));
       updateTasks(draggableId, source?.droppableId, destination?.droppableId)
-      axios.patch(`https://developer-progress-management.onrender.com/api/editTask/${draggableId}`, {
+      axios.patch(`http://localhost:5000/api/editTask/${draggableId}`, {
         status: destination?.droppableId
       }).then((res) => {
       }).catch(({ response }) => {
@@ -151,7 +151,7 @@ export default function Board() {
   }
 
   const hAddTaks = () => {
-    axios.post(`https://developer-progress-management.onrender.com/api/createTasks`, {
+    axios.post(`http://localhost:5000/api/createTasks`, {
       title: editTask?.title,
       description: editTask?.description
     }).then((res) => {
@@ -169,7 +169,7 @@ export default function Board() {
   }
 
   const hDeleteTask = () => {
-    axios.delete(`https://developer-progress-management.onrender.com/api/deleteTask/${deleteDetails?.id}`).then((res) => {
+    axios.delete(`http://localhost:5000/api/deleteTask/${deleteDetails?.id}`).then((res) => {
       let tempTaskArray = tasks[deleteDetails?.mode]
       tempTaskArray = removeItemById(deleteDetails?.id, tempTaskArray);
       setTasks({
