@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors());
 
 // MongoDB Atlas connection string
-const uri = 'mongodb+srv://harshalgosawi:mongodbHarshal2k@todoappcluster.kctaxb4.mongodb.net/test?retryWrites=true&w=majority';
+const uri = 'mongodb://mongo:27017/todo_db';
 
 // Connect to MongoDB Atlas
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
