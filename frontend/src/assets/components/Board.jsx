@@ -9,6 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Column from "./Column";
 import { Button, DialogContentText } from "@mui/material";
 
+axios.defaults.baseURL = 'http://backend-service:5000';
+
 const defaultEditTask = {
   open: false,
   title: '',
@@ -63,7 +65,7 @@ export default function Board() {
         "__v": 0
       }
     )
-    axios.patch(`http://localhost:5000/api/editTask/${editTask?._id}`, {
+    axios.patch(`/api/editTask/${editTask?._id}`, {
       title: editTask?.title,
       description: editTask?.description,
     }).then((res) => {
@@ -87,7 +89,7 @@ export default function Board() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/getTasks")
+    fetch("/api/getTasks")
       .then((response) => response.json())
       .then((json) => {
         setTasks(json);
@@ -101,7 +103,7 @@ export default function Board() {
     if (source && destination) {
       let prevTasks = JSON.parse(JSON.stringify(tasks));
       updateTasks(draggableId, source?.droppableId, destination?.droppableId)
-      axios.patch(`http://localhost:5000/api/editTask/${draggableId}`, {
+      axios.patch(`/api/editTask/${draggableId}`, {
         status: destination?.droppableId
       }).then((res) => {
       }).catch(({ response }) => {
@@ -151,7 +153,7 @@ export default function Board() {
   }
 
   const hAddTaks = () => {
-    axios.post(`http://localhost:5000/api/createTasks`, {
+    axios.post(`/api/createTasks`, {
       title: editTask?.title,
       description: editTask?.description
     }).then((res) => {
@@ -169,7 +171,7 @@ export default function Board() {
   }
 
   const hDeleteTask = () => {
-    axios.delete(`http://localhost:5000/api/deleteTask/${deleteDetails?.id}`).then((res) => {
+    axios.delete(`/api/deleteTask/${deleteDetails?.id}`).then((res) => {
       let tempTaskArray = tasks[deleteDetails?.mode]
       tempTaskArray = removeItemById(deleteDetails?.id, tempTaskArray);
       setTasks({
