@@ -7,8 +7,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors());
 
-// MongoDB Atlas connection string
-const uri = 'mongodb://mongo:27017/todo_db';
+const uri = `mongodb://mongo-service:27017/todo_db`;
 
 // Connect to MongoDB Atlas
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -107,6 +106,11 @@ app.get('/api/getTasks', (req, res) => {
             console.error(err);
             res.status(500).send('Error retrieving tasks from database');
         });
+});
+
+app.get('/api/test', (req, res) => {
+    console.log("Received a request to /api/test");
+    res.status(200).send("connected");
 });
 
 // Start the server

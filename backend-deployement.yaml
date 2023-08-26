@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: "harshal2k/todoapp-backend"
+          image: "harshal2k/todoapp-backend:v1"
           ports:
             - containerPort: 5000
 ---
@@ -29,3 +29,4 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
+  type: LoadBalancer

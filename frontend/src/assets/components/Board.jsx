@@ -9,7 +9,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Column from "./Column";
 import { Button, DialogContentText } from "@mui/material";
 
-axios.defaults.baseURL = 'http://backend-service:5000';
 
 const defaultEditTask = {
   open: false,
@@ -22,6 +21,7 @@ const defaultEditTask = {
 export default function Board() {
   const [editMode, setEditMode] = useState(false);
   const [deleteDetails, setDeleteDetails] = useState({ open: false, id: '', mode: '' });
+  console.log({ env: process.env })
 
   const [tasks, setTasks] = useState({
     wait: [],
@@ -89,7 +89,7 @@ export default function Board() {
   }
 
   useEffect(() => {
-    fetch("/api/getTasks")
+    axios.get("/api/getTasks")
       .then((response) => response.json())
       .then((json) => {
         setTasks(json);

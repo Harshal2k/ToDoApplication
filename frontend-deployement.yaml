@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: "harshal2k/todoapp-frontend"
+          image: "harshal2k/todoapp-frontend:v3"
           ports:
             - containerPort: 3000
 
